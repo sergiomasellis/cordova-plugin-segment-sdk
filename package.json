@@ -1,11 +1,36 @@
 {
-  "name": "cordova-plugin-segment-sdk",
-  "version": "0.0.4",
-  "description": "Cordova plugin for Segment Analytics",
-  "repository": {
+  "_from": "git+https://github.com/pidal/cordova-plugin-segment-sdk.git",
+  "_id": "cordova-plugin-segment-sdk@0.0.5",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/cordova-plugin-segment-sdk",
+  "_phantomChildren": {},
+  "_requested": {
     "type": "git",
-    "url": "git+https://github.com/jsfrocha/cordova-plugin-segment-sdk.git"
+    "raw": "https://github.com/pidal/cordova-plugin-segment-sdk",
+    "rawSpec": "https://github.com/pidal/cordova-plugin-segment-sdk",
+    "saveSpec": "git+https://github.com/pidal/cordova-plugin-segment-sdk.git",
+    "fetchSpec": "https://github.com/pidal/cordova-plugin-segment-sdk.git",
+    "gitCommittish": null
   },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/pidal/cordova-plugin-segment-sdk.git#79b63fcae4a58eb141aee9ca10a67f32dafefbe3",
+  "_spec": "https://github.com/pidal/cordova-plugin-segment-sdk",
+  "_where": "/Users/alfonsopidal/Projects/learning/ionic/testSegment3",
+  "author": {
+    "name": "Alfonso Pidal",
+    "email": "alfonsopidal@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/pidal/cordova-plugin-segment-sdk/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Cordova plugin for Segment Analytics",
+  "homepage": "https://github.com/pidal/cordova-plugin-segment-sdk#readme",
   "keywords": [
     "ecosystem:cordova",
     "cordova",
@@ -13,10 +38,11 @@
     "analytics",
     "attribution"
   ],
-  "author": "Joao Rocha <jsfrocha@gmail.com>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jsfrocha/cordova-plugin-segment-sdk/issues"
+  "name": "cordova-plugin-segment-sdk",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pidal/cordova-plugin-segment-sdk.git"
   },
-  "homepage": "https://github.com/jsfrocha/cordova-plugin-segment-sdk#readme"
+  "version": "0.0.4"
 }

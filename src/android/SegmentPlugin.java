@@ -12,7 +12,7 @@ import com.segment.analytics.StatsSnapshot;
 import com.segment.analytics.Traits;
 import com.segment.analytics.Traits.Address;
 
-import org.apache.cordova.BuildConfig;
+// import org.apache.cordova.BuildConfig;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
@@ -32,8 +32,55 @@ import java.util.concurrent.Future;
 public class SegmentPlugin extends CordovaPlugin {
 
     private static final String TAG = "SegmentPlugin";
+
     // static to avoid potential duplicates
     private static Analytics analytics;
+
+    /*
+    *
+    * HELPERS
+    *
+    */
+
+    private LogLevel _getLogLevel() {
+        // TODO: Fix this. Get log level from debug variable
+        // return (BuildConfig.DEBUG) ? LogLevel.VERBOSE : LogLevel.NONE;
+        return LogLevel.VERBOSE;
+    }
+
+    private String _getAnalyticsKey() {
+        //String preferenceName = (BuildConfig.DEBUG) ? "android_segment_debug_write_key" : "android_segment_write_key";
+        String preferenceName = false ? "android_segment_debug_write_key" : "android_segment_write_key";
+        return this.preferences.getString(preferenceName, null);
+    }
+
+    // pure function used by concurrent thread
+    private Analytics _getAnalyticsInstance(String writeKey, LogLevel logLevel) {
+
+        Analytics a;
+       
+        if (writeKey == null || "".equals(writeKey)) {
+            a = null;
+            Log.e(TAG, "Invalid write key: " + writeKey);
+        } else {
+            a = new Analytics.Builder(
+                cordova.getActivity().getApplicationContext(),
+                writeKey
+            )
+            .logLevel(logLevel)
+            // .trackApplicationLifecycleEvents()
+            .build();
+
+        }
+        return a;
+    }
+
+
+    /*
+    *
+    * PLUGIN METHODS
+    *
+    */
 
     @Override protected void pluginInitialize() {
 
@@ -54,54 +101,22 @@ public class SegmentPlugin extends CordovaPlugin {
                 return plugin._getAnalyticsInstance(writeKey, logLevel);
             }
         });
+
         try {
             SegmentPlugin.analytics = future.get();
             Log.d(TAG, "SegmentPlugin.analytics " + SegmentPlugin.analytics.toString());
             Analytics.setSingletonInstance(SegmentPlugin.analytics);
         } catch (InterruptedException e) {
-            Log.e(TAG, "interrupted error");
+            Log.e(TAG, "Interrupted error");
             e.printStackTrace();
         } catch (ExecutionException e) {
-            Log.e(TAG, "execution error");
+            Log.e(TAG, "Execution error");
             e.printStackTrace();
         }
-    }
-
-    private LogLevel _getLogLevel() {
-        return (BuildConfig.DEBUG) ? LogLevel.VERBOSE : LogLevel.NONE;
-    }
-
-    private String _getAnalyticsKey() {
-        String preferenceName = (BuildConfig.DEBUG) ? "android_segment_debug_write_key" : "android_segment_write_key";
-        return this.preferences.getString(preferenceName, null);
-    }
-
-    // pure function used by concurrent thread
-    private Analytics _getAnalyticsInstance(String writeKey, LogLevel logLevel) {
-        Analytics a;
-        if (writeKey == null || "".equals(writeKey)) {
-            a = null;
-            Log.e(TAG, "Invalid write key: " + writeKey);
-        } else {
-            a = new Analytics.Builder(
-                    cordova.getActivity().getApplicationContext(),
-                    writeKey
-            )
-                    .logLevel(logLevel)
-                    .trackApplicationLifecycleEvents()
-                    .build();
-
-        }
-        return a;
     }
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        // debug only
-//        if ("init".equals(action)) {
-//            this.pluginInitialize();
-//            return true;
-//        }
 
         if (SegmentPlugin.analytics == null) {
             Log.e(TAG, "Error initializing");
@@ -136,6 +151,14 @@ public class SegmentPlugin extends CordovaPlugin {
 
         return false;
     }
+
+
+    /*
+    *
+    * SEGMENT METHODS
+    *
+    */
+
 
     private void identify(final JSONArray args) {
         cordova.getThreadPool().execute(new Runnable() {
@@ -236,6 +259,12 @@ public class SegmentPlugin extends CordovaPlugin {
         }
     }
 
+    /*
+    *
+    * SEGMENT HELPER METHODS 
+    *
+    */
+
     private Traits makeTraitsFromJSON(JSONObject json) {
         Traits traits = new Traits();
         Map<String, Object> traitMap = mapFromJSON(json);
@@ -293,7 +322,8 @@ public class SegmentPlugin extends CordovaPlugin {
         Map<String, Object> objMap = mapFromJSON(json);
         Campaign campaign = new Campaign();
 
-        if (objMap != null) {
+        if (objMap != null && false) {
+
             Map<String, Object> contextMap = (Map<String, Object>) objMap.get("context");
             Map<String, Object> campaignMap = (Map<String, Object>) contextMap.get("campaign");
 
@@ -370,4 +400,5 @@ public class SegmentPlugin extends CordovaPlugin {
     {
         return args.isNull(index) ? null :args.optString(index);
     }
+
 }

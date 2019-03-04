@@ -1,12 +1,15 @@
 #import "SegmentPlugin.h"
 #import <Cordova/CDV.h>
 #import <Analytics/SEGAnalytics.h>
+#import <AdSupport/ASIdentifierManager.h> 
 
 @implementation SegmentPlugin : CDVPlugin
 
 - (void)pluginInitialize
 {
     NSLog(@"[cordova-plugin-segment-sdk] plugin initialized");
+
+    NSLog(@"Advertising ID: " + [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString]);
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishLaunching:) name:UIApplicationDidFinishLaunchingNotification object:nil];
 }
@@ -30,12 +33,18 @@
     NSString* writeKey = self.commandDelegate.settings[writeKeyPreferenceName] ?: [[NSBundle mainBundle] objectForInfoDictionaryKey:writeKeyPListName];
 
     if (writeKey.length) {
+        
         NSString* useLocationServices = self.commandDelegate.settings[@"analytics_use_location_services"] ?: [[NSBundle mainBundle] objectForInfoDictionaryKey:@"AnalyticsUserLocationServices"];
 
+        // Segment iOS SDK configuration options
         SEGAnalyticsConfiguration *configuration = [SEGAnalyticsConfiguration configurationWithWriteKey:writeKey];
+
         configuration.shouldUseLocationServices = [useLocationServices boolValue];
-        configuration.trackApplicationLifecycleEvents = true;
+        configuration.trackApplicationLifecycleEvents = NO;
+        configuration.flushAt = 1;
+        
         [SEGAnalytics setupWithConfiguration:configuration];
+
     } else {
         NSLog(@"[cordova-plugin-segment-sdk] ERROR - Invalid write key");
     }
