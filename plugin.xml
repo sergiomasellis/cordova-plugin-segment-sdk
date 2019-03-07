@@ -19,7 +19,7 @@
         <clobbers target="cordova.plugins.SegmentSDK" />
     </js-module>
 
-    <!-- Needed to get the Advertisisng ID from the device. No configurtion needed. -->
+    <!-- Needed to get the Advertisisng ID from the device. No configuration needed. -->
     <dependency id="cordova-plugin-idfa" />
 
     <platform name="android">

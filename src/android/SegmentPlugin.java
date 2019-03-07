@@ -159,7 +159,6 @@ public class SegmentPlugin extends CordovaPlugin {
     *
     */
 
-
     private void identify(final JSONArray args) {
         cordova.getThreadPool().execute(new Runnable() {
             @Override
