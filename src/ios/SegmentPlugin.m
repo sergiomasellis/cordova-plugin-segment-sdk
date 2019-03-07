@@ -9,7 +9,7 @@
 {
     NSLog(@"[cordova-plugin-segment-sdk] plugin initialized");
 
-    NSLog(@"Advertising ID: " + [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString]);
+    NSLog(@"Advertising ID: ", [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString]);
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishLaunching:) name:UIApplicationDidFinishLaunchingNotification object:nil];
 }
