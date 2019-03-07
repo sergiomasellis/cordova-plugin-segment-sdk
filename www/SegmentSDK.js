@@ -28,9 +28,7 @@ SegmentSDK.track = function() {
   exec(null, null, 'SegmentPlugin', 'track', getNArgs(args, 3));
 };
 
-
-// alias `screen` as `page` for consistent with Analytics.js interface
-SegmentSDK.screen = SegmentSDK.page = function() {
+SegmentSDK.screen = function() {
   var args = Array.prototype.slice.call(arguments);
 
   if (typeof args[1] !== 'string') {
@@ -54,22 +52,37 @@ SegmentSDK.flush = function() {
   exec(null, null, 'SegmentPlugin', 'flush', []);
 };
 
-// iOS only
+/*
+*
+* iOS Only
+*
+*/
+
 SegmentSDK.enable = function() {
   exec(null, null, 'SegmentPlugin', 'enable', []);
 };
 
-// iOS only
 SegmentSDK.disable = function() {
   exec(null, null, 'SegmentPlugin', 'disable', []);
 };
 
-// android only
+/*
+*
+* Android Only
+*
+*/
+
 SegmentSDK.getSnapshot = function(callbackFn) {
   exec(function(result) {
     callbackFn(result);
   }, null, 'SegmentPlugin', 'getSnapshot', []);
 };
+
+/*
+*
+* Helpers
+*
+*/
 
 function getNArgs(args, n) {
   var result = [];
