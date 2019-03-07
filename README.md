@@ -5,16 +5,27 @@ Cordova plugin for Segment Analytics.
 Supports Segment's iOS and Android SDKs.
 
 ## Usage
-Implements (mostly) the same API interface on `window.analytics` as [Analytics.js][].
+Implements the same interface as the iOS and Android native Segment SDK.
 
-## Segment Write Keys
-In config.xml, you can put the following preferences:
+## Configuration
+
+In the projects config.xml add the following preferences with the Segment source keyss
+
 ### iOS
-* \<preference name="ios_segment_write_key" value="{Segment iOS write key}" />
-* \<preference name="ios_segment_debug_write_key" value="{Segment iOS write key}" />
+`<preference name="ios_segment_write_key" value="{Segment iOS write key}" />`
+`<preference name="ios_segment_debug_write_key" value="{Segment iOS write key}" />`
+
 ### Android
-* \<preference name="android_segment_write_key" value="{Segment Android write key}" />
-* \<preference name="android_segment_debug_write_key" value="{Segment Android write key}" />
+
+`<preference name="android_segment_write_key" value="{Segment Android write key}" />`
+`<preference name="android_segment_debug_write_key" value="{Segment Android write key}" />`
+
+## Dependencies
+
+This plugins requires the [IDFA plugin][] to be able to get the Advertising ID from the device and send it within the request to Segment.
+
+This is needed for some integrations to work properly, such as a Facebook App Events
+
 
 ## iOS Integrations Setup
 This plugin uses cordova-plugin-cocoapods-support to automatically bundle in the Segment iOS SDK through CocaoPods.
@@ -33,3 +44,4 @@ To add more your custom integrations, create a `build-extras.gradle` file in you
 [Analytics.js]: https://segment.io/docs/libraries/analytics.js
 [iOS Quickstart]: https://segment.com/docs/libraries/ios/quickstart/
 [Android Custom Build Docs]: https://segment.com/docs/libraries/android/#custom-builds
+[IDFA plugin]: https://www.npmjs.com/package/cordova-plugin-idfa
