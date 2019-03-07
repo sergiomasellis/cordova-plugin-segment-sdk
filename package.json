@@ -1,36 +1,11 @@
 {
-  "_from": "git+https://github.com/pidal/cordova-plugin-segment-sdk.git",
-  "_id": "cordova-plugin-segment-sdk@0.0.5",
-  "_inBundle": false,
-  "_integrity": "",
-  "_location": "/cordova-plugin-segment-sdk",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "git",
-    "raw": "https://github.com/pidal/cordova-plugin-segment-sdk",
-    "rawSpec": "https://github.com/pidal/cordova-plugin-segment-sdk",
-    "saveSpec": "git+https://github.com/pidal/cordova-plugin-segment-sdk.git",
-    "fetchSpec": "https://github.com/pidal/cordova-plugin-segment-sdk.git",
-    "gitCommittish": null
-  },
-  "_requiredBy": [
-    "#USER",
-    "/"
-  ],
-  "_resolved": "git+https://github.com/pidal/cordova-plugin-segment-sdk.git#79b63fcae4a58eb141aee9ca10a67f32dafefbe3",
-  "_spec": "https://github.com/pidal/cordova-plugin-segment-sdk",
-  "_where": "/Users/alfonsopidal/Projects/learning/ionic/testSegment3",
-  "author": {
-    "name": "Alfonso Pidal",
-    "email": "alfonsopidal@gmail.com"
-  },
-  "bugs": {
-    "url": "https://github.com/pidal/cordova-plugin-segment-sdk/issues"
-  },
-  "bundleDependencies": false,
-  "deprecated": false,
+  "name": "cordova-plugin-segment-sdk",
+  "version": "0.0.4",
   "description": "Cordova plugin for Segment Analytics",
-  "homepage": "https://github.com/pidal/cordova-plugin-segment-sdk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pidal/cordova-plugin-segment-sdk.git"
+  },
   "keywords": [
     "ecosystem:cordova",
     "cordova",
@@ -38,11 +13,10 @@
     "analytics",
     "attribution"
   ],
+  "author": "Alfonso Pidal <alfonsopidal@gmail.com>",
   "license": "MIT",
-  "name": "cordova-plugin-segment-sdk",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pidal/cordova-plugin-segment-sdk.git"
+  "bugs": {
+    "url": "https://github.com/pidal/cordova-plugin-segment-sdk/issues"
   },
-  "version": "0.0.4"
+  "homepage": "https://github.com/pidal/cordova-plugin-segment-sdk#readme"
 }
