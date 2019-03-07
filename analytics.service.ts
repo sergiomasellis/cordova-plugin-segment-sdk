@@ -19,6 +19,9 @@ export class AnalyticsService {
 
   public track(name: String, properties?: any, options?: any) {
 
+    properties = properties || {};
+    options = options || {};
+    
     const data = [name, properties, options];
 
     if (this.analyticsEnabled) {
@@ -31,6 +34,9 @@ export class AnalyticsService {
   }
 
   public screen(name: String, properties?: any, options?: any) {
+
+    properties = properties || {};
+    options = options || {};
 
     const data = [name, properties, options];
 
@@ -45,6 +51,9 @@ export class AnalyticsService {
 
   public identify(userId?: String, properties?: any, options?: any) {
 
+    properties = properties || {};
+    options = options || {};
+    
     const data = [userId, properties, options];
 
     if (this.analyticsEnabled) {
