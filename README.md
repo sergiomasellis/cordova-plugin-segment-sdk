@@ -12,12 +12,15 @@ Implements the same interface as the iOS and Android native Segment SDK.
 In the projects config.xml add the following preferences with the Segment source keyss
 
 ### iOS
+
 `<preference name="ios_segment_write_key" value="{Segment iOS write key}" />`
+
 `<preference name="ios_segment_debug_write_key" value="{Segment iOS write key}" />`
 
 ### Android
 
 `<preference name="android_segment_write_key" value="{Segment Android write key}" />`
+
 `<preference name="android_segment_debug_write_key" value="{Segment Android write key}" />`
 
 ## Dependencies
