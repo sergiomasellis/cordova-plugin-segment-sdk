@@ -7,7 +7,7 @@
     <description>Cordova Plugin Segment SDK</description>
     <license>MIT License</license>
     <keywords>cordova,segment,analytics</keywords>
-    <repo>https://github.com/jsfrocha/cordova-plugin-segment-sdk.git</repo>
+    <repo>https://github.com/pidal/cordova-plugin-segment-sdk.git</repo>
 
     <engines>
         <engine name="cordova" version=">=3.0.0" />
