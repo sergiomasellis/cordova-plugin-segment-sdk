@@ -20,7 +20,7 @@ In the projects config.xml add the following preferences with the Segment source
 
 ` constructor(private analyticsService: AnalyticsService) {} `
 
-2. Use the methods provided: .track, .alias(), .identify(), .alias(), etc...
+2. Use the methods provided: .track(), .screen(), .identify(), .alias(), etc...
 For more information check official Segment iOS and Android SDK.
 
 `this.analyticsService.track('Button pressed Service');`
