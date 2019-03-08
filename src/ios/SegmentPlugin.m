@@ -91,20 +91,16 @@
 
 - (void)screen:(CDVInvokedUrlCommand*)command
 {
-    NSString* category = [command.arguments objectAtIndex:0];
-    NSString* name = [command.arguments objectAtIndex:1];
-    NSDictionary* properties = [command.arguments objectAtIndex:2];
-    NSDictionary* options = [command.arguments objectAtIndex:3];
+    NSString* name = [command.arguments objectAtIndex:0];
+    NSDictionary* properties = [command.arguments objectAtIndex:1];
+    NSDictionary* options = [command.arguments objectAtIndex:2];
 
     if (properties == (id)[NSNull null]) {
-        properties = [NSMutableDictionary dictionary];
-    }
-
-    if (category != (id)[NSNull null] && [category length] != 0) {
-        [properties setValue:category forKey:@"category"];
+        properties = nil;
     }
 
     [[SEGAnalytics sharedAnalytics] screen:name properties:properties options:options];
+
 }
 
 - (void)alias:(CDVInvokedUrlCommand*)command

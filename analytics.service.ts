@@ -21,7 +21,7 @@ export class AnalyticsService {
 
     properties = properties || {};
     options = options || {};
-    
+
     const data = [name, properties, options];
 
     if (this.analyticsEnabled) {
@@ -32,13 +32,12 @@ export class AnalyticsService {
     }
 
   }
-
-  public screen(name: String, properties?: any, options?: any) {
+  public screen(screenTitle: String, properties?: any, options?: any) {
 
     properties = properties || {};
     options = options || {};
 
-    const data = [name, properties, options];
+    const data = [screenTitle, properties, options];
 
     if (this.analyticsEnabled) {
       cordova.exec(null, null, 'SegmentPlugin', 'screen', data);
@@ -53,7 +52,7 @@ export class AnalyticsService {
 
     properties = properties || {};
     options = options || {};
-    
+
     const data = [userId, properties, options];
 
     if (this.analyticsEnabled) {
