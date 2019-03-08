@@ -29,7 +29,6 @@
                 <param name="onload" value="true"/>
             </feature>
             <preference name="android_segment_write_key"/>
-            <preference name="android_segment_debug_write_key"/>
         </config-file>
 
         <config-file target="AndroidManifest.xml" parent="/manifest">
@@ -64,7 +63,6 @@
                 <param name="onload" value="true"/>
             </feature>
             <preference name="ios_segment_write_key"/>
-            <preference name="ios_segment_debug_write_key"/>
         </config-file>
 
         <header-file src="src/ios/SegmentPlugin.h" />

@@ -7,21 +7,26 @@ Supports Segment's iOS and Android SDKs.
 ## Usage
 Implements the same interface as the iOS and Android native Segment SDK.
 
+
+## Installation
+
+`ionic cordova plugin add https://github.com/pidal/cordova-plugin-segment-sdk`
+
 ## Configuration
 
 In the projects config.xml add the following preferences with the Segment source keyss
 
 ### iOS
 
-`<preference name="ios_segment_write_key" value="{Segment iOS write key}" />`
+Inside `<platform name="ios">`element:
 
-`<preference name="ios_segment_debug_write_key" value="{Segment iOS write key}" />`
+`<preference name="ios_segment_write_key" value="{Segment iOS write key}" />`
 
 ### Android
 
-`<preference name="android_segment_write_key" value="{Segment Android write key}" />`
+Inside `<platform name="android">` element:
 
-`<preference name="android_segment_debug_write_key" value="{Segment Android write key}" />`
+`<preference name="android_segment_write_key" value="{Segment Android write key}" />`
 
 ## Dependencies
 
