@@ -64,9 +64,9 @@ export class AnalyticsService {
 
   }
 
-  public alias(previousId: String, userId: String) {
+  public alias(newId: String, options?: any) {
 
-    const data = [previousId, userId];
+    const data = [newId, options];
 
     if (this.analyticsEnabled) {
       cordova.exec(null, null, 'SegmentPlugin', 'alias', data);
