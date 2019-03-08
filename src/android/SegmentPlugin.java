@@ -58,7 +58,7 @@ public class SegmentPlugin extends CordovaPlugin {
        
         if (writeKey == null || "".equals(writeKey)) {
             a = null;
-            Log.e(TAG, "Invalid write key: " + writeKey);
+            Log.e(TAG, "Invalid Segment write key: " + writeKey);
         } else {
             a = new Analytics.Builder(
                 cordova.getActivity().getApplicationContext(),
@@ -82,7 +82,7 @@ public class SegmentPlugin extends CordovaPlugin {
     @Override protected void pluginInitialize() {
 
         if (SegmentPlugin.analytics != null) {
-            Log.d(TAG, "ANALYTICS INSTANCE ALREADY EXISTS!");
+            Log.d(TAG, "Analytics instance already exists!");
             return;
         }
 

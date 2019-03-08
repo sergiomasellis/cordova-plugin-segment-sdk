@@ -9,8 +9,8 @@
 {
     NSLog(@"[cordova-plugin-segment-sdk] plugin initialized");
 
-    // Fixed advertising ID output
-    NSLog(@"Advertising ID: %@", [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString]);
+    // Advertising ID output
+    // NSLog(@"Advertising ID: %@", [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString]);
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishLaunching:) name:UIApplicationDidFinishLaunchingNotification object:nil];
 }
@@ -21,16 +21,8 @@
     NSString* writeKeyPListName;
 
     //Get app credentials from config.xml or the info.plist if they can't be found
-    #ifdef DEBUG
-        [SEGAnalytics debug:YES];
-        writeKeyPreferenceName = @"ios_segment_debug_write_key";
-        writeKeyPListName = @"AnalyticsDebugWriteKey";
-    #else
-        [SEGAnalytics debug:NO];
-        writeKeyPreferenceName = @"ios_segment_write_key";
-        writeKeyPListName = @"AnalyticsWriteKey";
-    #endif
-
+    writeKeyPreferenceName = @"ios_segment_write_key";
+    writeKeyPListName = @"AnalyticsWriteKey";
     NSString* writeKey = self.commandDelegate.settings[writeKeyPreferenceName] ?: [[NSBundle mainBundle] objectForInfoDictionaryKey:writeKeyPListName];
 
     if (writeKey.length) {
@@ -47,7 +39,7 @@
         [SEGAnalytics setupWithConfiguration:configuration];
 
     } else {
-        NSLog(@"[cordova-plugin-segment-sdk] ERROR - Invalid write key");
+        NSLog(@"[cordova-plugin-segment-sdk] ERROR - Invalid Segment write key");
     }
 }
 
