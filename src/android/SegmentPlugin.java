@@ -43,15 +43,12 @@ public class SegmentPlugin extends CordovaPlugin {
     */
 
     private LogLevel _getLogLevel() {
-        // TODO: Fix this. Get log level from debug variable
         // return (BuildConfig.DEBUG) ? LogLevel.VERBOSE : LogLevel.NONE;
         return LogLevel.VERBOSE;
     }
 
     private String _getAnalyticsKey() {
-        //String preferenceName = (BuildConfig.DEBUG) ? "android_segment_debug_write_key" : "android_segment_write_key";
-        String preferenceName = false ? "android_segment_debug_write_key" : "android_segment_write_key";
-        return this.preferences.getString(preferenceName, null);
+        return this.preferences.getString('android_segment_write_key', null);
     }
 
     // pure function used by concurrent thread
@@ -160,6 +157,7 @@ public class SegmentPlugin extends CordovaPlugin {
     */
 
     private void identify(final JSONArray args) {
+        
         cordova.getThreadPool().execute(new Runnable() {
             @Override
             public void run() {
@@ -181,6 +179,7 @@ public class SegmentPlugin extends CordovaPlugin {
     }
 
     private void group(JSONArray args) {
+
         analytics.with(cordova.getActivity().getApplicationContext()).group(
                 optArgString(args, 0),
                 makeTraitsFromJSON(args.optJSONObject(1)),
@@ -222,6 +221,7 @@ public class SegmentPlugin extends CordovaPlugin {
     }
 
     private void alias(JSONArray args) {
+
         analytics.with(cordova.getActivity().getApplicationContext()).alias(
                 optArgString(args, 0),
                 null // passing options is deprecated
@@ -237,6 +237,7 @@ public class SegmentPlugin extends CordovaPlugin {
     }
 
     private void getSnapshot(CallbackContext callbackContext) {
+
         StatsSnapshot snapshot = analytics.with(cordova.getActivity().getApplicationContext()).getSnapshot();
         JSONObject snapshotJSON = new JSONObject();
 
@@ -265,6 +266,7 @@ public class SegmentPlugin extends CordovaPlugin {
     */
 
     private Traits makeTraitsFromJSON(JSONObject json) {
+
         Traits traits = new Traits();
         Map<String, Object> traitMap = mapFromJSON(json);
 
@@ -280,6 +282,7 @@ public class SegmentPlugin extends CordovaPlugin {
     }
 
     private Properties makePropertiesFromJSON(JSONObject json) {
+
         Properties properties = new Properties();
         Map<String, Object> propertiesMap = mapFromJSON(json);
 
@@ -291,9 +294,9 @@ public class SegmentPlugin extends CordovaPlugin {
 
                 for (Map<String, Object> rawProduct : rawProducts) {
                     Product product = new Product(
-                            rawProduct.get("id") == null ? "" : (String) rawProduct.get("id"),
-                            rawProduct.get("sku") == null ? "" : (String) rawProduct.get("sku"),
-                            rawProduct.get("price") == null ? 0d : Double.valueOf(rawProduct.get("price").toString())
+                        rawProduct.get("id") == null ? "" : (String) rawProduct.get("id"),
+                        rawProduct.get("sku") == null ? "" : (String) rawProduct.get("sku"),
+                        rawPr>oduct.get("price") == null ? 0d : Double.valueOf(rawProduct.get("price").toString())
                     );
 
                     product.putAll(rawProduct);
@@ -310,14 +313,15 @@ public class SegmentPlugin extends CordovaPlugin {
     }
 
     private AnalyticsContext enrichAnalyticsContext(AnalyticsContext analyticsContext, JSONObject json) {
+        
         Campaign campaign = makeCampaignFromJSON(json);
-
         analyticsContext.putCampaign(campaign);
 
         return analyticsContext;
     }
 
     private Campaign makeCampaignFromJSON(JSONObject json) {
+
         Map<String, Object> objMap = mapFromJSON(json);
         Campaign campaign = new Campaign();
 
@@ -359,6 +363,7 @@ public class SegmentPlugin extends CordovaPlugin {
     }
 
     private static Map<String, Object> mapFromJSON(JSONObject jsonObject) {
+
         if (jsonObject == null) {
             return null;
         }
@@ -376,6 +381,7 @@ public class SegmentPlugin extends CordovaPlugin {
     }
 
     private static List<Object> listFromJSON(JSONArray jsonArray) {
+
         List<Object> list = new ArrayList<Object>();
         for (int i = 0, count = jsonArray.length(); i < count; i++) {
             Object value = getObject(jsonArray.opt(i));
@@ -387,6 +393,7 @@ public class SegmentPlugin extends CordovaPlugin {
     }
 
     private static Object getObject(Object value) {
+
         if (value instanceof JSONObject) {
             value = mapFromJSON((JSONObject) value);
         } else if (value instanceof JSONArray) {
@@ -397,7 +404,7 @@ public class SegmentPlugin extends CordovaPlugin {
 
     public static String optArgString(JSONArray args, int index)
     {
-        return args.isNull(index) ? null :args.optString(index);
+        return args.isNull(index) ? null : args.optString(index);
     }
 
 }

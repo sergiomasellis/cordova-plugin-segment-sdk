@@ -6,7 +6,7 @@ import { Platform } from '@ionic/angular';
 })
 export class AnalyticsService {
 
-   analyticsEnabled = true;
+  private analyticsEnabled = true;
 
   constructor(private platform: Platform) {
 
@@ -73,6 +73,22 @@ export class AnalyticsService {
       cordova.exec(null, null, 'SegmentPlugin', 'alias', data);
     } else {
       console.log('[AnalyticsService] Alias');
+      console.log(data);
+    }
+
+  }
+
+  public group(userId: String, groupId: String, traits?: any, options?: any) {
+
+    traits = traits || {};
+    options = options || {};
+
+    const data = [userId, groupId, traits, options];
+
+    if (this.analyticsEnabled) {
+      cordova.exec(null, null, 'SegmentPlugin', 'group', data);
+    } else {
+      console.log('[AnalyticsService] Group');
       console.log(data);
     }
 
