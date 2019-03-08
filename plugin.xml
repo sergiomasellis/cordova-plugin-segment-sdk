@@ -15,9 +15,9 @@
         <engine name="cordova-ios" version=">=3.0.0" />
     </engines>
 
-    <js-module name="SegmentSDK" src="www/SegmentSDK.js">
+    <!-- <js-module name="SegmentSDK" src="www/SegmentSDK.js">
         <clobbers target="cordova.plugins.SegmentSDK" />
-    </js-module>
+    </js-module> -->
 
     <!-- Needed to get the Advertisisng ID from the device. No configuration needed. -->
     <dependency id="cordova-plugin-idfa" />
