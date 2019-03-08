@@ -1,8 +1,6 @@
-# cordova-plugin-segment
+# Segment Analytics Cordova Plugin
 
-Cordova plugin for Segment Analytics.
-
-Supports Segment's iOS and Android SDKs.
+Cordova plugin for Segment Analytics. Supports Segment's iOS and Android SDKs.
 
 ## Usage
 Implements the same interface as the iOS and Android native Segment SDK.
