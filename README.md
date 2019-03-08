@@ -14,11 +14,41 @@ Implements the same interface as the iOS and Android native Segment SDK.
 
 ## Configuration
 
-In the projects config.xml add the following preferences with the Segment source keyss
+In the projects config.xml add the following preferences with the Segment source keys
+
+## Usage
+
+1. Inject the service dependency on the component where it's going to be needed: 
+
+` constructor(private analyticsService: AnalyticsService) {} `
+
+2. Use the methods provided: .track, .alias(), .identify(), .alias(), etc...
+For more information check official Segment iOS and Android SDK.
+
+`this.analyticsService.track('Button pressed Service');`
+
+It might be useful to send some events or setup configurations on the initializeApp() ionic method:
+
+```typescript
+initializeApp() {
+    this.platform.ready().then(() => {
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+
+      this.initializeAnalytics();
+
+    });
+  }
+
+  initializeAnalytics(): any {
+      this.analyticsService.track('Application Opened', {}, {});
+  }
+```
+
 
 ### iOS
 
-Inside `<platform name="ios">`element:
+Inside `<platform name="ios">`element: 
 
 `<preference name="ios_segment_write_key" value="{Segment iOS write key}" />`
 
