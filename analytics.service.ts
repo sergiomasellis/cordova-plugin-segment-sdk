@@ -32,6 +32,7 @@ export class AnalyticsService {
     }
 
   }
+  
   public screen(screenTitle: String, properties?: any, options?: any) {
 
     properties = properties || {};
@@ -131,7 +132,7 @@ export class AnalyticsService {
 
   public disable() {
 
-    if (this.analyticsEnabled) {
+    if (this.analyticsEnabled && this.platform.is('ios')) {
       cordova.exec(null, null, 'SegmentPlugin', 'disable', []);
     } else {
       console.log('[AnalyticsService] Disable');
