@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core'
 import { Platform } from 'ionic-angular'
 
+declare let cordova: any
+
 @Injectable()
 export class AnalyticsService {
 
