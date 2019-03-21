@@ -43,19 +43,18 @@ public class SegmentPlugin extends CordovaPlugin {
     */
 
     private LogLevel _getLogLevel() {
-        // return (BuildConfig.DEBUG) ? LogLevel.VERBOSE : LogLevel.NONE;
         return LogLevel.VERBOSE;
     }
 
     private String _getAnalyticsKey() {
-        return this.preferences.getString('android_segment_write_key', null);
+        return this.preferences.getString("android_segment_write_key", null);
     }
 
     // pure function used by concurrent thread
     private Analytics _getAnalyticsInstance(String writeKey, LogLevel logLevel) {
 
         Analytics a;
-       
+
         if (writeKey == null || "".equals(writeKey)) {
             a = null;
             Log.e(TAG, "Invalid Segment write key: " + writeKey);
@@ -157,7 +156,7 @@ public class SegmentPlugin extends CordovaPlugin {
     */
 
     private void identify(final JSONArray args) {
-        
+
         cordova.getThreadPool().execute(new Runnable() {
             @Override
             public void run() {
@@ -261,7 +260,7 @@ public class SegmentPlugin extends CordovaPlugin {
 
     /*
     *
-    * SEGMENT HELPER METHODS 
+    * SEGMENT HELPER METHODS
     *
     */
 
@@ -296,7 +295,7 @@ public class SegmentPlugin extends CordovaPlugin {
                     Product product = new Product(
                         rawProduct.get("id") == null ? "" : (String) rawProduct.get("id"),
                         rawProduct.get("sku") == null ? "" : (String) rawProduct.get("sku"),
-                        rawPr>oduct.get("price") == null ? 0d : Double.valueOf(rawProduct.get("price").toString())
+                        rawProduct.get("price") == null ? 0d : Double.valueOf(rawProduct.get("price").toString())
                     );
 
                     product.putAll(rawProduct);
@@ -313,7 +312,7 @@ public class SegmentPlugin extends CordovaPlugin {
     }
 
     private AnalyticsContext enrichAnalyticsContext(AnalyticsContext analyticsContext, JSONObject json) {
-        
+
         Campaign campaign = makeCampaignFromJSON(json);
         analyticsContext.putCampaign(campaign);
 
