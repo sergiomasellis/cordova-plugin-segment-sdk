@@ -7,7 +7,7 @@
     <description>Cordova Plugin Segment SDK</description>
     <license>MIT License</license>
     <keywords>cordova,segment,analytics</keywords>
-    <repo>https://github.com/pidal/cordova-plugin-segment-sdk.git</repo>
+    <repo>https://github.com/joax-denizen/cordova-plugin-segment-sdk.git</repo>
 
     <engines>
         <engine name="cordova" version=">=3.0.0" />
@@ -20,9 +20,14 @@
     </js-module> -->
 
     <!-- Needed to get the Advertisisng ID from the device. No configuration needed. -->
-    <dependency id="cordova-plugin-idfa" />
+    <!-- <dependency id="cordova-plugin-idfa" /> -->
 
     <platform name="android">
+
+        <preference name="PLAY_SERVICES_VERSION" default="11.0.4"/>
+        <framework src="com.google.android.gms:play-services-base:$PLAY_SERVICES_VERSION" />
+        <framework src="com.google.android.gms:play-services-ads:$PLAY_SERVICES_VERSION" />
+
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="SegmentPlugin">
                 <param name="android-package" value="com.segment.analytics.cordova.SegmentPlugin"/>

@@ -1,8 +1,7 @@
 package com.segment.analytics.cordova;
 
 import android.util.Log;
-import com.google.android.gms.ads.identifier.AdvertisingIdClient.Info;
-
+// 
 import com.segment.analytics.Analytics;
 import com.segment.analytics.Analytics.LogLevel;
 import com.segment.analytics.AnalyticsContext;
@@ -51,27 +50,6 @@ public class SegmentPlugin extends CordovaPlugin {
 
     private String _getAnalyticsKey() {
         return this.preferences.getString("android_segment_write_key", null);
-    }
-
-    private String _getAdvertisingID() {
-        AdvertisingIdClient.Info idInfo = null;
-        try {
-            idInfo = AdvertisingIdClient.getAdvertisingIdInfo(getApplicationContext());
-        } catch (GooglePlayServicesNotAvailableException e) {
-            e.printStackTrace();
-        } catch (GooglePlayServicesRepairableException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String advertId = null;
-        try{
-            advertId = idInfo.getId();
-        }catch (NullPointerException e){
-            e.printStackTrace();
-        }
-
-        return advertId;
     }
 
     // pure function used by concurrent thread
@@ -339,8 +317,7 @@ public class SegmentPlugin extends CordovaPlugin {
 
         Campaign campaign = makeCampaignFromJSON(json);
         analyticsContext.putCampaign(campaign);
-        analyticsContext.putAdvertisingInfo('', true)
-
+        
         return analyticsContext;
     }
 
