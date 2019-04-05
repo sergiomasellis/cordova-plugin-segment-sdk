@@ -211,7 +211,7 @@ public class SegmentPlugin extends CordovaPlugin {
         AnalyticsContext analyticsContext = analytics.getAnalyticsContext();
         analyticsContext = enrichAnalyticsContext(analyticsContext, contextObj);
 
-        Log.d(TAG, "Segment - Screen - ContextObj: " + contextObj.toString());
+        //Log.d(TAG, "Segment - Screen - ContextObj: " + contextObj.toString());
 
         analytics.with(cordova.getActivity().getApplicationContext()).screen(
                 optArgString(args, 0),
