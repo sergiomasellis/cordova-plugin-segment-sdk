@@ -38,7 +38,7 @@ export class AnalyticsService {
     properties = properties || {}
     options = options || {}
 
-    const data = [screenTitle]
+    const data = (this.platform.is('ios'))  ? [screenTitle, properties] : [screenTitle]
 
     if (this.analyticsEnabled) {
       cordova.exec(null, null, 'SegmentPlugin', 'screen', data)
@@ -49,12 +49,12 @@ export class AnalyticsService {
 
   }
 
-  public identify(userId?: String, properties?: any, options?: any) {
+  public identify(userId?: String, traits?: any, options?: any) {
 
-    properties = properties || {}
+    traits = traits || {}
     options = options || {}
 
-    const data = [userId, properties, options]
+    const data = [userId, traits, options]
 
     if (this.analyticsEnabled) {
       cordova.exec(null, null, 'SegmentPlugin', 'identify', data)
