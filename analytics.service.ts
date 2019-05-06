@@ -38,7 +38,7 @@ export class AnalyticsService {
     properties = properties || {}
     options = options || {}
 
-    const data = (this.platform.is('ios'))  ? [screenTitle, properties, options] : [screenTitle]
+    const data = (this.platform.is('ios'))  ? [screenTitle, properties] : [screenTitle]
 
     if (this.analyticsEnabled) {
       cordova.exec(null, null, 'SegmentPlugin', 'screen', data)
