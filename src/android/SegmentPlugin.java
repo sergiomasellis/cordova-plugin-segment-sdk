@@ -225,8 +225,7 @@ public class SegmentPlugin extends CordovaPlugin {
     private void alias(JSONArray args) {
 
         analytics.with(cordova.getActivity().getApplicationContext()).alias(
-                optArgString(args, 0),
-                null // passing options is deprecated
+                optArgString(args, 0)
         );
     }
 
