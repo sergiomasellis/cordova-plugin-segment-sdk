@@ -104,6 +104,21 @@ export class AnalyticsService {
 
   }
 
+  public storeAnonymousId(result: any) {
+    console.log(result)
+    document.cookie = 'segment_anonymous_id=' + result.anonymousId
+  }
+
+  public getAnonymousID() {
+
+    if (this.analyticsEnabled) {
+      cordova.exec(this.storeAnonymousId, null, 'SegmentPlugin', 'getAnonymousId', [])
+    } else {
+      console.log('[AnalyticsService] getAnalyticsContext')
+    }
+
+  }
+
   public flush() {
 
     if (this.analyticsEnabled) {
