@@ -142,6 +142,9 @@ public class SegmentPlugin extends CordovaPlugin {
         } else if ("flush".equals(action)) {
             flush();
             return true;
+        } else if ("getAnonymousId".equals(action)) {
+            getAnonymousId(callbackContext);
+            return true;
         } else if ("getSnapshot".equals(action)) {
             getSnapshot(callbackContext);
             return true;
@@ -235,6 +238,24 @@ public class SegmentPlugin extends CordovaPlugin {
 
     private void flush() {
         analytics.with(cordova.getActivity().getApplicationContext()).flush();
+    }
+
+    private void getAnonymousId(CallbackContext callbackContext) {
+
+        Traits traits = new Traits();
+        traits = analytics.getAnalyticsContext().traits();
+        Map<String, Object> traitMap = traits;
+        JSONObject snapshotJSON = new JSONObject();
+
+        try {
+            snapshotJSON.put("anonymousId", traitMap.get("anonymousId"));
+            PluginResult r = new PluginResult(PluginResult.Status.OK, snapshotJSON);
+            r.setKeepCallback(false);
+            callbackContext.sendPluginResult(r);
+        } catch(JSONException e) {
+            e.printStackTrace();
+            return;
+        }
     }
 
     private void getSnapshot(CallbackContext callbackContext) {

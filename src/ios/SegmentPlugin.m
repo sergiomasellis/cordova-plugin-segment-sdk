@@ -122,4 +122,13 @@
     [[SEGAnalytics sharedAnalytics] disable];
 }
 
+- (void)getAnonymousId:(CDVInvokedUrlCommand*)command
+{
+    NSString *anonymousId = @"iosAnonymousId";//[[SEGAnalytics sharedAnalytics] ]; //TODO: get the actual anonymousId, temporal workaround for testing
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setValue: anonymousId forKey: @"anonymousId"];
+    CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary: dic];
+    [self.commandDelegate sendPluginResult: result callbackId: command.callbackId];
+}
+
 @end
