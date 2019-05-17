@@ -13,5 +13,6 @@
 - (void)flush:(CDVInvokedUrlCommand*)command;
 - (void)enable:(CDVInvokedUrlCommand*)command;
 - (void)disable:(CDVInvokedUrlCommand*)command;
+- (void)getAnonymousId:(CDVInvokedUrlCommand*)command;
 
 @end
