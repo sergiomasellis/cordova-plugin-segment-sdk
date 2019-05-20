@@ -104,18 +104,16 @@ export class AnalyticsService {
 
   }
 
-  public storeAnonymousId(result: any) {
-    localStorage.setItem('segment_anonymous_id', result.anonymousId)
-  }
-
   public getAnonymousID() {
 
     if (this.analyticsEnabled) {
-      cordova.exec(this.storeAnonymousId, null, 'SegmentPlugin', 'getAnonymousId', [])
+      return new Promise((resolve,reject) => {
+        cordova.exec(resolve, reject, 'SegmentPlugin', 'getAnonymousId', [])
+      })
     } else {
       console.log('[AnalyticsService] getAnalyticsContext')
     }
-
+    
   }
 
   public flush() {
