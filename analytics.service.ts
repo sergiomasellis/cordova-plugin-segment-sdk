@@ -105,8 +105,7 @@ export class AnalyticsService {
   }
 
   public storeAnonymousId(result: any) {
-    console.log(result)
-    document.cookie = 'segment_anonymous_id=' + result.anonymousId
+    localStorage.setItem('segment_anonymous_id', result.anonymousId)
   }
 
   public getAnonymousID() {
