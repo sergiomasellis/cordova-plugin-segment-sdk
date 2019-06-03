@@ -49,11 +49,11 @@
     NSDictionary* traits = [command.arguments objectAtIndex:1];
     NSDictionary* options = [command.arguments objectAtIndex:2];
 
-    if (traits == (id)[NSNull null]) {
+    if (traits == (id)[NSNull null] || traits.count == 0) {
         traits = nil;
     }
 
-    if (options == (id)[NSNull null]) {
+    if (options == (id)[NSNull null] || options.count == 0) {
         options = nil;
     }
 
