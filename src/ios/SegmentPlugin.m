@@ -57,8 +57,11 @@
     }
 
     if (options == (id)[NSNull null] || options.count == 0) {
+        NSLog(@"[cordova-plugin-segment-sdk] INFO - No Options Pass to Identify");
         [[SEGAnalytics sharedAnalytics] identify:userId traits:traits];
+        
     } else {
+        NSLog(@"[cordova-plugin-segment-sdk] INFO - Calling Identify with all params");
         [[SEGAnalytics sharedAnalytics] identify:userId traits:traits options:options];
     }
 }
