@@ -73,7 +73,7 @@
         <header-file src="src/ios/SegmentPlugin.h" />
         <source-file src="src/ios/SegmentPlugin.m" />
 
-        <framework src="Analytics" type="podspec" spec="3.6.10" />
+        <framework src="Analytics" type="podspec" spec="3.7.0-beta.3" />
 
     </platform>
 
