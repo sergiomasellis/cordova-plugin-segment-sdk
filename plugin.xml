@@ -7,7 +7,7 @@
     <description>Cordova Plugin Segment SDK</description>
     <license>MIT License</license>
     <keywords>cordova,segment,analytics</keywords>
-    <repo>https://github.com/joax-denizen/cordova-plugin-segment-sdk.git</repo>
+    <repo>https://github.com/gcantuw/cordova-plugin-segment-sdk.git</repo>
 
     <engines>
         <engine name="cordova" version=">=3.0.0" />
@@ -73,7 +73,7 @@
         <header-file src="src/ios/SegmentPlugin.h" />
         <source-file src="src/ios/SegmentPlugin.m" />
 
-        <framework src="Analytics" type="podspec" spec="3.5.5" />
+        <framework src="Analytics" type="podspec" spec="3.6.10" />
 
     </platform>
 
