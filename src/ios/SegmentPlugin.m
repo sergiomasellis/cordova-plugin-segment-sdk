@@ -53,6 +53,10 @@
         traits = nil;
     }
 
+    if (options == (id)[NSNull null]) {
+        options = nil;
+    }
+
     [[SEGAnalytics sharedAnalytics] identify:userId traits:traits options:options];
 }
 
