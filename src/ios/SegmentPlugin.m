@@ -49,15 +49,18 @@
     NSDictionary* traits = [command.arguments objectAtIndex:1];
     NSDictionary* options = [command.arguments objectAtIndex:2];
 
+
+    [[SEGAnalytics sharedAnalytics] identify:userId traits:traits options:options];
+
     if (traits == (id)[NSNull null] || traits.count == 0) {
         traits = nil;
     }
 
     if (options == (id)[NSNull null] || options.count == 0) {
-        options = nil;
+        [[SEGAnalytics sharedAnalytics] identify:userId traits:traits];
+    } else {
+        [[SEGAnalytics sharedAnalytics] identify:userId traits:traits options:options];
     }
-
-    [[SEGAnalytics sharedAnalytics] identify:userId traits:traits options:options];
 }
 
 - (void)group:(CDVInvokedUrlCommand*)command
